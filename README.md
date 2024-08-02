@@ -110,15 +110,79 @@ this mean that the table is identify the next value of the database
 
 
 ## assosiation 
-### oo assosiation types
+### intro
+#### oo assosiation types
 * one to one (bi,uni -> directional)
 * one to many (uni -> directional)
 * many to one (uni -> directional) 
 * many to many (uni, bi -> directional)
 
 
-### DBMS assosiation types
+#### DBMS assosiation types
 * bi-direction (fk, join table)
+
+
+### creating the relation between two object 
+* relation type(oneToOne, oneToMany, manyToOne,....)
+* joinColumn or joinTable -> use the annotation (@JoinTable, @JoinColumn)
+* bi, ui ->directional (to make it bi give control to one side using (@Join..(mapedby = "objectName")))
+
+### many to one (uni)
+* it is join by column by default
+* to make it joint by table us (@JoinTable(name, jointcolumns, inverseColumns))
+
+
+### one to many (uni)
+* it is join by table by default
+
+### one to many and many to one (bi)
+* i have to use (mappedby = "attribute name of the manytoone") inside @OneToMany
+
+### one to one(uni, bi)
+* it use the JoinColumn
+* the other like the above
+
+### one to one (Shared Primary Key && uni)
+* use the @PrimaryKeyJoinColumn after @OneToOne
+* there are no forgin key
+* it search for the primary key for both table if there are and join based on the same value in prmary key 
+* ex) (person.id = dev.id) -> join based this condition
+* you can allow to use the GeneratedVlaue for only one table
+
+### one to one (Shared Primary Key && bi)
+* it is like uni (the same)
+* don't use the mappedby attribute for @OneToOne 
+* this is the only this case that don't use the mappedby attribute
+
+### many to many (bi, uni)
+* it must be join by table
+* (bi) have to use the "mappedby" attribute 
+
+### embeddable
+* use for mappe more than one class to only one table
+* add @Embeddable for the classes that need to apped to specific Entity
+* @Embeddable class doesn't annotate with @Entity or @Id
+* add @Embedded to the refrence of the assosiation object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

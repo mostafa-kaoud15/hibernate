@@ -1,4 +1,4 @@
-package com.example;
+package com.example.persistence;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

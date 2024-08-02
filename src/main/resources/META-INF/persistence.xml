@@ -9,6 +9,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.example.entity.YourEntity</class>
         <properties>
+            <property name="packagesToScan" value="com.example.assosiation.manytoone"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hibernate"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
