@@ -9,7 +9,9 @@ public class Book {
     private Long id;
     private String title;
 
-    public Book() {}
+    public Book() {
+        System.out.println("book default constructor");
+    }
     public Book(long id, String title) {
         this.id = id;
         this.title = title;

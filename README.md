@@ -7,7 +7,7 @@
 * there are no implementation of the jpa but there are provider for it like (hibernate, eclips,...)
 
 ### arch
-* conficration file( persistence.xml) (persistence-unit, provider, props)
+* configration file( persistence.xml) (persistence-unit, provider, props)
 * sessionfactory (EntityManagerFactory)
 * session (EnitityManager)
 * query api(api provided by session (EntityManager))
@@ -27,7 +27,7 @@ this mean that the table is identify the next value of the database
 ## access in jpa
 ### Field access
 * add anotation in the filed
-* it use the relection api not setter and getter
+* it use the reflection api not setter and getter
 * it break the encapsulation (there are no logic in the field access)
 * if i use the field access for only one field, all other fields will be field access <br>
     -> to convert this filed access to  property access use<br> 
@@ -46,7 +46,7 @@ this mean that the table is identify the next value of the database
 ### Managed State(emplo.persist())
 *  The entity is associated with a persistence context. Changes to the entity will be synchronized with the database.
 * The EntityManager is responsible for managing the entity. The entity is automatically synchronized with the database at transaction commit or explicit flush.
-* >persistent();
+* >persist();
 
 ### Detached State
 * The entity is no longer associated with a persistence context. 
@@ -166,8 +166,41 @@ this mean that the table is identify the next value of the database
 
 
 
+## inheretance
+### inheretence strategy (how the inheretance classes will mapping into database)
+* single table(there will be anew column which is the Discriminator whcih specify which table is this row) <br>
+==> 
+* table for concrete class (can't use the indentity id strategy)
+* join tables (each table has an id)
+
+## complex mapping
+### secoundary table
+* it is mean that we have one class that mapped to two tables in db
+* it is done by using @SecondaryTalbe(name= "tableName")
+* to assign the props to this table use @Column(table = "tableName")
+
+### composition pk
+* it mean that we have table with more than one pk
+* it is done by embeddable where is the pk is the @EmbeddedId of the @Embeddable class with the two filed
+* constraints => we need to use #EqualAndHashCode
+
+### composition fk
+* when the fk is the composist (there are composit pk use as fk)
+* use  => `@JoinColumns({
+            @JoinColumn(name = "emp_id1", referencedColumnName = "id1"),
+            @JoinColumn(name = "emp_id2", referencedColumnName = "id2")
+    })`
 
 
+## query 
+### query type 
+* sql (table, columns)
+* jpql (entitys, fields)
+* criteria (java object)
+
+### how to create and excute query
+* query = entityManager.createQuery(jpql:"query", type.class): TypedQuery
+* query.getResultList(); ==> it will return the query result mapped to object
 
 
 
